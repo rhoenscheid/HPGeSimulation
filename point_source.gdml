@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+ <define>
+	   <constant name="TWOPI" value="2.*pi"/>
+           
+	   <quantity name="source_radius" type="length" value="1" unit="mm"/>
+
+
+ </define>
+
+ <materials>
+	   <element Z="27" formula="Co" name="G4_Co">
+                   <atom value="59.93" />
+           </element>
+</materials>
+
+<solids>
+           <orb name="source_orb" r="source_radius" lunit="mm"/>
+
+</solids>
+
+<structure>
+
+       	<volume name="Source">
+		<materialref ref="G4_Co"/>
+		<solidref ref="source_orb"/>
+	</volume>
+
+</structure>
+
+<setup name="Default" version="1.0">
+	<world ref="Source"/>
+</setup>
+
+</gdml>
+
+
+
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!--DOCTYPE gdml [
+]-->
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+
+<define>
+
+	<constant name="TWOPI" value="2.*pi"/>
+	 
+	<quantity name="box_x" type="lenght" value="10" unit="mm" />
+	<quantity name="box_y" type="length" value="10" unit="mm"/>
+
+	<quantity name="box_z" type="length" value="10" unit="mm"/>
+
+  </define>
+
+
+<materials>
+
+	 <element Z="7" formula="N" name="Nitrogen" >
+		 <atom value="14.01"/>
+	  </element>
+	 <element Z="8" formula="O" name="Oxygen" >
+		 <atom value="16.0"/>
+          </element>
+	 <material name="Aluminium" Z="13.0" >
+		 <D value="2.70" unit="g/cm3"/>
+		 <atom value="26.98"/>
+	 </material>
+
+	 <material formula=" " name="Air" >
+		 <D value="0.00128" unit="g/cm3"/>
+		 <fraction n="0.7" ref="Nitrogen"/>
+		 <fraction n="0.3" ref="Oxygen"/>
+	 </material>
+	 
+	
+ </materials>
+
+
+ <solids>
+
+	 <box name="box_solid" x="box_x" y="box_y" z="box_z" unit="mm"/>
+
+ </solids>
+
+
+ <structure>
+	 <volume name="Cryostat">
+		 <materialref ref="Aluminium"/>
+		 <solidref ref="box_solid"/>
+	 </volume>
+ </structure>
+
+
+ <setup name="Default" version="1.0">
+	 <world ref="Cryostat"/>
+ </setup>
+
+</gdml>
+

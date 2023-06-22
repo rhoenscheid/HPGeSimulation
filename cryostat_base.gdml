@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!--DOCTYPE gdml [
+]-->
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+
+<define>
+
+	<constant name="TWOPI" value="2.*pi"/>
+	 
+	<quantity name="cryostat_height" type="lenght" value="142.0" unit="mm" />
+	<quantity name="cryostat_radius" type="length" value="40" unit="mm"/>
+
+	<quantity name="cryostat_thickness" type="length" value="1" unit="mm"/>
+	<quantity name="base_height" type="length" value="22" unit="mm"/>
+
+	<position name="cryostat_inner_pos" x="0." y="0." z="0." unit="mm"/>
+	<position name="cryostat_base_pos" x="0." y="0." z="-65" unit="mm"/>
+
+  </define>
+
+
+<materials>
+
+	 <material name="Aluminium" Z="13.0" >
+		 <D value="2.70" unit="g/cm3"/>
+		 <atom value="26.98"/>
+	 </material>
+	 
+	
+ </materials>
+
+
+ <solids>
+
+	 <tube name="cryostat_base" rmin="0." rmax="5" z="10" startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
+
+ </solids>
+
+
+ <structure>
+	 <volume name="cryo_base">
+		 <materialref ref="Aluminium"/>
+		 <solidref ref="cryostat_base"/>
+	 </volume>
+ </structure>
+
+
+ <setup name="Default" version="1.0">
+	 <world ref="cryo_base"/>
+ </setup>
+
+</gdml>
+

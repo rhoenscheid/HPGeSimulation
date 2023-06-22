@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!--DOCTYPE gdml [
+]-->
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+
+<define>
+
+	<constant name="TWOPI" value="2.*pi"/>
+	 
+	<quantity name="detector_height" type="lenght" value="62.0" unit="mm" />
+	<quantity name="detector_radius" type="length" value="60.9 / 2" unit="mm"/>
+
+	<quantity name="well_height" type="length" value="42.625" unit="mm"/>
+	<quantity name="well_radius" type="length" value="10.66 / 2" unit="mm"/>
+
+	<quantity name="groove_height" type="length" value="0.01" unit="mm"/>
+	<quantity name="groove_inner_radius" type="length" value="0.01" unit="mm"/>
+	<quantity name="groove_outer_radius" type="length" value="0.01" unit="mm"/>
+
+	<quantity name="DeadLayer" type="length" value="0.01" unit="mm"/>
+
+	<quantity name="cryo_height" type="length" value="142.0" unit="mm"/>
+	<quantity name="cryo_rad" type="lenght" value="40" unit="mm"/>
+	<quantity name="cryo_th" type="length" value="1" unit="mm"/>
+
+	<position name="pos_Ge" x="0" y="0" z="-20" unit="mm"/>
+	<position name="pos_cryo" x="0" y="0" z="0" unit="mm"/>
+
+
+  </define>
+
+
+<materials>
+
+         <isotope name="Ge70" Z="32" N="70">
+                 <atom type="A" value="69.9243" />
+         </isotope>
+         <isotope name="Ge72" Z="32" N="72">
+                 <atom type="A" value="71.9221" />
+         </isotope>
+         <isotope name="Ge73" Z="32" N="73">
+                 <atom type="A" value="72.9235" />
+         </isotope>
+         <isotope name="Ge74" Z="32" N="74">
+                 <atom type="A" value="73.9212" />
+         </isotope>
+         <isotope name="Ge76" Z="32" N="76">
+                 <atom type="A" value="75.9214" />
+	 </isotope> 
+	 <element name="enr_ge" formula="Ge" > 
+		 <fraction n="0.205" ref="Ge70" />  
+		 <fraction n="0.274" ref="Ge72" />
+                 <fraction n="0.0776" ref="Ge73" />
+                 <fraction n="0.3659" ref="Ge74" />
+                 <fraction n="0.0775" ref="Ge76" /> 
+	 </element>
+         <material name="enriched_germanium" formula="Ge" >
+                 <D value="5.545" unit="g/cm3" />
+                 <fraction n="1.0" ref="enr_ge" />
+	 </material>
+
+	 <material name="Aluminium" Z="13.0" >
+		 <D value="2.70"/>
+		 <atom value="26.98"/>
+	 </material>
+	
+ </materials>
+
+
+ <solids>
+
+	<genericPolycone name="crystal" startphi="1" deltaphi="TWOPI" aunit="rad">
+		 <rzpoint r="well_radius" z="0" />
+		 <rzpoint r="detector_radius" z="0" />  
+		 <rzpoint r="detector_radius" z="detector_height" /> 
+		 <rzpoint r="groove_outer_radius" z="detector_height" />
+		 <rzpoint r="groove_outer_radius" z="groove_height" />
+		 <rzpoint r="groove_inner_radius" z="groove_height" />
+		 <rzpoint r="groove_inner_radius" z="detector_height" />
+		 <rzpoint r="0" z="detector_height" />
+		 <rzpoint r="0" z="well_height" />
+		 <rzpoint r="well_radius" z="well_height" />
+	 </genericPolycone>
+
+ </solids>
+
+
+ <structure>
+	 <volume name="Crystal">
+		 <materialref ref="enriched_germanium"/>
+		 <solidref ref="crystal"/>
+	 </volume>
+ </structure>
+
+
+ <setup name="Default" version="1.0">
+	 <world ref="Crystal"/>
+ </setup>
+
+</gdml>
+

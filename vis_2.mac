@@ -1,0 +1,39 @@
+/run/verbose 1
+/tracking/verbose 1
+/random/setSeeds 1 1
+/g4simple/setReferencePhysList LBE
+/g4simple/setDetectorGDML main_sim.gdml
+/g4simple/setOutputFormat xml
+/analysis/setFileName vis.xml
+
+/g4simple/setVolID Crystal_PV 1
+/run/initialize
+
+/vis/open HepRepXML
+/vis/scene/create vis
+/vis/sceneHandler/attach
+/vis/viewer/set/style surface
+/vis/viewer/set/autoRefresh false
+/vis/scene/add/volume world
+/vis/scene/add/trajectories smooth
+/vis/scene/add/hits
+/vis/scene/add/axes 0 0 0 1
+/vis/geometry/set/colour Crystal 0 1.00 0.00 0.00 1
+/vis/geometry/set/colour Cryostat 0 1.00 1.00 1.00 1
+/vis/geometry/set/colour Source 0 0.00 1.00 0.00 1
+/vis/geometry/set/colour Copper 0 0.00 1.00 1.00 1
+/vis/geometry/set/colour Lead 0 1.00 1.00 0.00 1
+#/vis/geometry/set/colour cryo_base_1 0 0.50 0.50 1.00 1
+/g4simple/listPhysVols
+
+/gps/particle geantino
+/gps/energy 100 MeV
+
+/gps/direction 0 0 1
+/gps/pos/centre 0. 0. -500. mm
+/gps/pos/confine Crystal_PV
+
+/vis/scene/endOfEventAction accumulate 1
+/run/beamOn 1
+/vis/viewer/flush
+/vis/viewer/set/autoRefresh true

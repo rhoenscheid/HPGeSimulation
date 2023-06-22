@@ -1,0 +1,36 @@
+:/run/verbose 1
+#/event/verbose 1
+#/tracking verbose 1
+/random/setSeeds 1 1
+#/g4simple/setRAndomSeed true
+/g4simple/setReferencePhysList LBE
+
+/g4simple/setDetectorGDML main_sim.gdml
+#/g4simple/setOutputFormat hdf5
+#/g4simple/setOutputFormat root
+#/g4simple/setOutputFormat xml
+/g4simple/setOutputFormat root
+/analysis/setFileName sim_out.root
+
+/g4simple/setVolID Detector_PV 1
+#/g4simple/recordAllSteps true
+/run/initialize
+/g4simple/listPhysVols
+#/material/nist/listMaterials
+
+/gps/particle ion
+/gps/ion 27 60 0 0
+/gps/energy 0 MeV
+/grdm/nucleusLimits 60 60 28 27
+/gps/ang/type iso
+/gps/ang/mintheta 0 deg
+/gps/ang/maxtheta 360 deg
+/gps/pos/type Volume
+/gps/pos/shape Sphere
+/gps/pos/radius 1.0 mm
+/gps/pos/centre 0 0.0 67.5 mm
+/gps/pos/confine Source_PV
+
+/run/beamOn 10000
+
+

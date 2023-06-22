@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!--DOCTYPE gdml [
+]-->
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+
+<define>
+
+	<constant name="TWOPI" value="2.*pi"/>
+	 
+	<quantity name="cryostat_height" type="lenght" value="142.0" unit="mm" />
+	<quantity name="cryostat_radius" type="length" value="40" unit="mm"/>
+
+	<quantity name="cryostat_thickness" type="length" value="1" unit="mm"/>
+	<quantity name="base_height" type="length" value="22" unit="mm"/>
+
+	<position name="cryostat_inner_pos" x="0." y="0." z="0.5* base_height" unit="mm"/>
+	<position name="cryostat_base_pos" x="0." y="0." z="-60" unit="mm"/>
+
+	<position name="zero_pos" x="0." y="0." z="0." unit="mm"/>
+	<position name="base_pos" x="0." y="0." z="-165" unit="mm"/>
+
+  </define>
+
+
+<materials>
+
+	 <material name="Aluminium" Z="13.0" >
+		 <D value="2.70" unit="g/cm3"/>
+		 <atom value="26.98"/>
+	 </material>
+	 
+	
+ </materials>
+
+
+ <solids>
+
+	 <tube name="cryostat_outer" rmin="0." rmax="cryostat_radius" z="cryostat_height + base_height"  startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
+
+	 <tube name="cryostat_inner" rmin="0." rmax="cryostat_radius - cryostat_thickness" z="cryostat_height - 2*cryostat_thickness" startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
+
+	 <subtraction name="cryostat_solid" >
+		 <first ref="cryostat_outer"/> <second ref="cryostat_inner"/>
+		 <positionref ref="cryostat_inner_pos" />
+	 </subtraction>
+
+
+ </solids>
+
+
+ <structure>
+
+	 <volume name="Cryostat">
+		 <materialref ref="Aluminium"/>
+		 <solidref ref="cryostat_solid"/>
+	 </volume>
+
+ </structure>
+
+
+ <setup name="Default" version="1.0">
+	 <world ref="Cryostat"/>
+ </setup>
+
+</gdml>
+
