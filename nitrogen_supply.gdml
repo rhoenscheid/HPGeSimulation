@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!--DOCTYPE gdml [
+]-->
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+
+<define>
+
+	<constant name="TWOPI" value="2.*pi"/>
+	 
+	<quantity name="NLen" type="lenght" value="170.0" unit="mm" />
+	<quantity name="NRad" type="length" value="15.9" unit="mm"/>
+
+	<quantity name="CuRod_rad" type="length" value="5.3" unit="mm"/>
+	<quantity name="SSteelInnerRad" type="length" value="10.6" unit="mm"/>
+
+	<position name="zero_pos" x="0." y="0." z="0." unit="mm"/>
+	<position name="new_pos" x="0." y="0." z="-65" unit="mm"/>
+
+  </define>
+
+
+<materials>
+
+	 <isotope name="Cr52" Z="24" N="52">
+		 <atom type="A" value="51.94"/>
+	 </isotope>
+	 <isotope name="Cr53" Z="24" N="52">
+		 <atom type="A" value="52.94"/>
+	 </isotope>
+	 <element name="Chromium" formula="Cr" Z="24">
+		 <fraction n="0.9" ref="Cr52"/>
+		 <fraction n="0.1" ref="Cr53"/>
+	 </element>
+
+	 <element name="Iron" formula="Fe" Z="26">
+		 <atom value="56"/>
+	 </element>
+	 <element name="Nickel" formula="Ni" Z="28">
+		 <atom value="58"/>
+	 </element>
+	 <element name="Molybdenum" formula="Mo" Z="42">
+		 <atom value="98"/>
+	 </element>
+
+
+	 <isotope name="Fe56" Z="26" N="56">
+		 <atom type="A" value="55.934"/>
+	 </isotope>
+	 <isotope name="Ni58" Z="28" N="58">
+		 <atom type="A" value="57.935"/>
+	 </isotope>
+	 <isotope name="Mo98" Z="42" N="98">
+		 <atom type="A" value="97.905"/>
+	 </isotope>
+
+	 <material name="SSteel" formula="SSt">
+	         <fraction n="0.18" ref="Cr" />
+	         <fraction n="0.67" ref="Fe" />
+	         <fraction n="0.12" ref="Ni" />
+		 <fraction n="0.03" ref="Mo" />
+		 <D value="7.98" unit="g/cm3"/>
+         </material>
+
+	 <isotope name="Cu63" Z="29" N="63">
+	         <atom type="A" value="62.930"/>
+	 </isotope>
+	 <isotope name="Cu65" Z="29" N="65">
+	         <atom type="A" value="64.928"/>
+	 </isotope>
+	 <element name="copper" formula="Cu" >
+	         <fraction n="0.691" ref="Cu63"/>
+	         <fraction n="0.309" ref="Cu65"/>
+	 </element>
+	 
+	 <material name="natural_copper" formula="Cu" >
+	          <D value="8.96" unit="g/cm3" />
+	          <fraction n="1.0" ref="copper" />
+	 </material>
+	
+ </materials>
+
+
+ <solids>
+
+	 <tube name="Copper_Rod" rmin="0." rmax="CuRod_rad" z="NLen" startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
+
+	 <tube name="NRod" rmin="0." rmax="NRad" z="NLen" startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
+
+	 <tube name="ssteel_inner" rmin="0." rmax="SSteelInnerRad" z="NLen" startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
+	 <subtraction name="SSteel_solid" >
+	          <first ref="NRod"/> <second ref="ssteel_inner"/>
+	          <positionref ref="zero_pos" />
+	  </subtraction>
+
+ </solids>
+
+
+ <structure>
+	 <volume name="SSteel_vol">
+		 <materialref ref="SSteel"/>
+		 <solidref ref="SSteel_solid"/>
+	 </volume>
+	 <volume name="Copper_vol">
+		 <materialref ref="natural_copper"/>
+		 <solidref ref="Copper_Rod"/>
+	 </volume>
+	 <volume name="Nitrogen_Supply">
+		 <materialref ref="G4_AIR"/>
+		 <solidref ref="NRod"/>
+		 <physvol>
+			 <volumeref ref="SSteel_vol"/>
+			 <positionref ref="zero_pos"/>
+		 </physvol>
+		 <physvol>
+			 <volumeref ref="Copper_vol"/>
+			 <positionref ref="zero_pos"/>
+		 </physvol>
+	 </volume>
+ </structure>
+
+
+ <setup name="Default" version="1.0">
+	 <world ref="Nitrogen_Supply"/>
+ </setup>
+
+</gdml>
+

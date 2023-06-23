@@ -3,10 +3,11 @@
 
  <define>
 
-    	 <position name="pos_source" x="0" y="0"  z="67.5" unit="mm"/>
-	 <position name="pos_detector" z="3" unit="mm" />
+    	 <position name="pos_source" x="0" y="0"  z="78.5" unit="mm"/>
+	 <position name="pos_detector" z="14" unit="mm" />
 	 <position name="pos_cryostat" x="0" y="0" z="0" unit="mm"/>
 	 <position name="pos_shielding" x="0." y="0." z="110" unit="mm"/>
+	 <position name="pos_nsupply" x="0." y="0." z="-167" unit="mm"/>
          
 	 <rotation name="DetRot" unit="deg" x="0" y="180" z="0"/>
 
@@ -27,6 +28,14 @@
                  <materialref ref="G4_AIR"/>
 		 <solidref ref="worldBox"/>
 		 <physvol>
+			 <file name="shielding_new.gdml"/>
+			 <positionref ref="pos_shielding"/>
+		 </physvol>
+		 <physvol>
+			 <file name="nitrogen_supply.gdml"/>
+			 <positionref ref="pos_nsupply"/>
+		 </physvol>
+		 <physvol>
 			 <file name="cryostat.gdml"/>
 			 <positionref ref="pos_cryostat"/>
 		 </physvol>
@@ -37,10 +46,6 @@
 		 <physvol>
 			 <file name="point_source.gdml"/>
 			 <positionref ref="pos_source"/>
-		 </physvol>
-		 <physvol>
-			 <file name="shielding.gdml"/>
-			 <positionref ref="pos_shielding"/>
 		 </physvol>
              </volume>
 

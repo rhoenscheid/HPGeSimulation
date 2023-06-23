@@ -16,6 +16,10 @@
 	<quantity name="pb_thi" type="length" value="100" unit="mm"/>
 	<quantity name="pb_len" type="length" value="675" unit="mm"/>
 
+	<quantity name="NRad" type="length" value="15.9" unit="mm"/>
+	<quantity name="NLen" type="length" value="170" unit="mm"/>
+	<position name="N_pos" x="0." y="0." z="- 200 - (cu_thi + pb_thi) / 2" unit="mm"/>
+
 	<position name="zero_pos" x="0." y="0." z="0." unit="mm"/>
 
   </define>
@@ -71,6 +75,7 @@
 	 </material>
 
 
+
 	
  </materials>
 
@@ -79,6 +84,9 @@
 
 	 <tube name="copper_outer" rmin="0." rmax="cu_rad" z="cu_len" startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
 	 <tube name="copper_inner" rmin="0." rmax="cu_rad - cu_thi" z="cu_len - 2* cu_thi" startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
+
+	 <tube name="NSupply_empty" rmin="0." rmax="NRad" z="NLen" startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
+
 	 <subtraction name="copper_solid" >
 		 <first ref="copper_outer"/> <second ref="copper_inner"/>
 		 <positionref ref="zero_pos" />
@@ -91,9 +99,14 @@
 		 <positionref ref="zero_pos" />
 	 </subtraction>
 
-	 <subtraction name="shielding_solid" >
+	 <subtraction name="shielding_solid_0" >
 		 <first ref="lead_outer"/> <second ref="copper_inner"/>
 		 <positionref ref="zero_pos"/>
+	 </subtraction>
+
+	 <subtraction name="shielding_solid" >
+		 <first ref="shielding_solid_0"/> <second ref="NSupply_empty"/>
+		 <positionref ref="N_pos"/>
 	 </subtraction>
 
 

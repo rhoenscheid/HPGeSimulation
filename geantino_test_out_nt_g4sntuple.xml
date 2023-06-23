@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE aida SYSTEM "http://aida.freehep.org/schemas/3.2.1/aida.dtd">
+<aida version="3.2.1">
+  <implementation package="tools" version="5.0.6"/>
+  <tuple path="/" name="g4sntuple" title="steps data">
+    <columns>
+      <column name="nEvents" type="int"/>
+      <column name="event" type="int"/>
+      <column name="pid" type="ITuple" booking="{int pid}"/>
+      <column name="trackID" type="ITuple" booking="{int trackID}"/>
+      <column name="parentID" type="ITuple" booking="{int parentID}"/>
+      <column name="step" type="ITuple" booking="{int step}"/>
+      <column name="KE" type="ITuple" booking="{double KE}"/>
+      <column name="Edep" type="ITuple" booking="{double Edep}"/>
+      <column name="x" type="ITuple" booking="{double x}"/>
+      <column name="y" type="ITuple" booking="{double y}"/>
+      <column name="z" type="ITuple" booking="{double z}"/>
+      <column name="lx" type="ITuple" booking="{double lx}"/>
+      <column name="ly" type="ITuple" booking="{double ly}"/>
+      <column name="lz" type="ITuple" booking="{double lz}"/>
+      <column name="pdx" type="ITuple" booking="{double pdx}"/>
+      <column name="pdy" type="ITuple" booking="{double pdy}"/>
+      <column name="pdz" type="ITuple" booking="{double pdz}"/>
+      <column name="t" type="ITuple" booking="{double t}"/>
+      <column name="volID" type="ITuple" booking="{int volID}"/>
+      <column name="iRep" type="ITuple" booking="{int iRep}"/>
+    </columns>
+    <rows>
+      <row>
+        <entry value="1"/>
+        <entry value="0"/>
+        <entryITuple>
+          <row><entry value="22"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="1"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="0"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="0"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="0.0595409"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="0"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="0.458653"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="-0.436599"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="67.1707"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="0.458653"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="-0.436599"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="-0.329328"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="0.163401"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="0.273489"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="0.947895"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="0"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="0"/></row>
+        </entryITuple>
+        <entryITuple>
+          <row><entry value="0"/></row>
+        </entryITuple>
+      </row>
+    </rows>
+  </tuple>
+</aida>
