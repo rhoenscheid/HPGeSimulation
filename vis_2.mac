@@ -29,8 +29,8 @@
 /gps/particle geantino
 /gps/energy 100 MeV
 
-/gps/direction 0 -1 0
-/gps/pos/centre 0. 0. -180. mm
+/gps/direction 0 0 1
+/gps/pos/centre 0. 0. -500. mm
 /gps/pos/confine Crystal_PV
 
 /vis/scene/endOfEventAction accumulate 1

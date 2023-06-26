@@ -22,21 +22,45 @@
 
 <materials>
 
-	 <element Z="14" formula="Si" name="Silicon" >
-	         <atom value="28.09" />
+	 <isotope name="Cr52" Z="24" N="52">
+		 <atom type="A" value="51.94"/>
+	 </isotope>
+	 <isotope name="Cr53" Z="24" N="52">
+		 <atom type="A" value="52.94"/>
+	 </isotope>
+	 <element name="Chromium" formula="Cr" Z="24">
+		 <fraction n="0.9" ref="Cr52"/>
+		 <fraction n="0.1" ref="Cr53"/>
 	 </element>
-	 <element Z="24" formula="Cr" name="Chromium" >
-                 <atom value="51.9961" />
-         </element>
-         <element Z="25" formula="Mn" name="Manganese" >
-                 <atom value="54.93805" />
-         </element>
-         <element Z="26" formula="Fe" name="Iron" >
-                 <atom value="55.845" />
-         </element>
-         <element Z="28" formula="Ni" name="Nickel" >
-	         <atom value="58.9332" />
-         </element>
+
+	 <element name="Iron" formula="Fe" Z="26">
+		 <atom value="56"/>
+	 </element>
+	 <element name="Nickel" formula="Ni" Z="28">
+		 <atom value="58"/>
+	 </element>
+	 <element name="Molybdenum" formula="Mo" Z="42">
+		 <atom value="98"/>
+	 </element>
+
+
+	 <isotope name="Fe56" Z="26" N="56">
+		 <atom type="A" value="55.934"/>
+	 </isotope>
+	 <isotope name="Ni58" Z="28" N="58">
+		 <atom type="A" value="57.935"/>
+	 </isotope>
+	 <isotope name="Mo98" Z="42" N="98">
+		 <atom type="A" value="97.905"/>
+	 </isotope>
+
+	 <material name="SSteel" formula="SSt">
+		 <D value="7.98" unit="g/cm3"/>
+		 <fraction n="0.18" ref="Cr" />
+	         <fraction n="0.67" ref="Fe" />
+	         <fraction n="0.12" ref="Ni" />
+		 <fraction n="0.03" ref="Mo" />
+         </material>
 
 	 <isotope name="Cu63" Z="29" N="63">
 	         <atom type="A" value="62.930"/>
@@ -53,16 +77,7 @@
 	          <D value="8.96" unit="g/cm3" />
 	          <fraction n="1.0" ref="copper" />
 	 </material>
-	 <material name="SSteel" >
-                  <D value="7.9" unit="g/cm3" />
-                  <fraction n="0.01" ref="Silicon" />
-                  <fraction n="0.2" ref="Chromium" />
-                  <fraction n="0.02" ref="Manganese" />
-                  <fraction n="0.67" ref="Iron" />
-                  <fraction n="0.10" ref="Nickel" />
-         </material>
-
-
+	
  </materials>
 
 

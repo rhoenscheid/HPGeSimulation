@@ -1,4 +1,4 @@
-:/run/verbose 1
+/run/verbose 1
 #/event/verbose 1
 #/tracking verbose 1
 /random/setSeeds 1 1
@@ -12,7 +12,7 @@
 /g4simple/setOutputFormat root
 /analysis/setFileName sim_out.root
 
-/g4simple/setVolID Detector_PV 1
+/g4simple/setVolID Crystal_PV 1
 #/g4simple/recordAllSteps true
 /run/initialize
 /g4simple/listPhysVols
@@ -28,9 +28,9 @@
 /gps/pos/type Volume
 /gps/pos/shape Sphere
 /gps/pos/radius 1.0 mm
-/gps/pos/centre 0 0.0 67.5 mm
+/gps/pos/centre 0 0.0 84.5 mm
 /gps/pos/confine Source_PV
 
-/run/beamOn 10000
+/run/beamOn 1000000
 
 

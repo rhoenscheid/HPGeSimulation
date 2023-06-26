@@ -3,7 +3,7 @@
 
  <define>
 
-    	 <position name="pos_source" x="0" y="0"  z="78.5" unit="mm"/>
+    	 <position name="pos_source" x="0" y="0"  z="84.5" unit="mm"/>
 	 <position name="pos_detector" z="14" unit="mm" />
 	 <position name="pos_cryostat" x="0" y="0" z="0" unit="mm"/>
 	 <position name="pos_shielding" x="0." y="0." z="110" unit="mm"/>
