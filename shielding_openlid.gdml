@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!--DOCTYPE gdml [
+]-->
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+
+<define>
+
+	<constant name="TWOPI" value="2.*pi"/>
+	 
+	<quantity name="cu_rad" type="lenght" value="200" unit="mm"/>
+	<quantity name="cu_thi" type="length" value="6" unit="mm"/>
+	<quantity name="cu_len" type="length" value="475" unit="mm"/>
+
+	<quantity name="pb_rad" type="length" value="300" unit="mm"/>
+	<quantity name="pb_thi" type="length" value="100" unit="mm"/>
+	<quantity name="pb_len" type="length" value="675" unit="mm"/>
+
+	<quantity name="NRad" type="length" value="15.9" unit="mm"/>
+	<quantity name="NLen" type="length" value="170" unit="mm"/>
+	<position name="N_pos" x="0." y="0." z="- 200 - (cu_thi + pb_thi) / 2" unit="mm"/>
+
+	<position name="zero_pos" x="0." y="0." z="0." unit="mm"/>
+
+	<position name="lid_pos" x="0." y="0." z="cu_len/2 + ((pb_thi - cu_thi) / 2)" unit="mm"/>
+
+  </define>
+
+
+<materials>
+
+	 <material name="Aluminium" Z="13.0">
+		 <D value="2.70" unit="g/cm3"/>
+		 <atom value="26.98"/>
+	 </material>
+
+	 <isotope name="Pb204" Z="82" N="204">
+	         <atom type="A" value="203.973"/>
+	 </isotope>
+	 <isotope name="Pb206" Z="82" N="206">
+		 <atom type="A" value="205.974"/>
+	 </isotope>
+	 <isotope name="Pb207" Z="82" N="207">
+		 <atom type="A" value="206.976"/>
+	 </isotope>
+	 <isotope name="Pb208" Z="82" N="208">
+		 <atom type="A" value="207.977"/>
+	 </isotope>
+
+	 <element name="lead" formula="Pb">
+	         <fraction n="0.014" ref="Pb204" />
+	         <fraction n="0.241" ref="Pb206" />
+	         <fraction n="0.221" ref="Pb207" />
+	         <fraction n="0.524" ref="Pb208" />
+	 </element>
+
+	 <material name="natural_lead" formula="Pb" >
+	         <D value="11.34" unit="g/cm3" />
+	         <fraction n="1.0" ref="lead" />
+	 </material>
+
+	 <isotope name="Cu63" Z="29" N="63">
+		 <atom type="A" value="62.930"/>
+	 </isotope>
+	 <isotope name="Cu65" Z="29" N="65">
+		 <atom type="A" value="64.928"/>
+         </isotope>
+
+	 <element name="copper" formula="Cu" >
+		 <fraction n="0.691" ref="Cu63"/>
+		 <fraction n="0.309" ref="Cu65"/>
+	 </element>
+
+	 <material name="natural_copper" formula="Cu" >
+		 <D value="8.96" unit="g/cm3" />
+		 <fraction n="1.0" ref="copper" />
+	 </material>
+
+
+
+	
+ </materials>
+
+
+ <solids>
+
+	 <tube name="copper_outer" rmin="0." rmax="cu_rad" z="cu_len" startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
+	 <tube name="copper_inner" rmin="0." rmax="cu_rad - cu_thi" z="cu_len - 2* cu_thi" startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
+
+	 <tube name="NSupply_empty" rmin="0." rmax="NRad" z="NLen" startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
+
+	 <subtraction name="copper_solid" >
+		 <first ref="copper_outer"/> <second ref="copper_inner"/>
+		 <positionref ref="zero_pos" />
+	 </subtraction>
+
+	 <tube name="lead_outer" rmin="0." rmax="pb_rad" z="pb_len" startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
+	 <tube name="lead_inner" rmin="0." rmax="pb_rad - pb_thi" z="pb_len - 2*pb_thi" startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
+	 <subtraction name="lead_solid" >
+		 <first ref="lead_outer"/> <second ref="lead_inner"/>
+		 <positionref ref="zero_pos" />
+	 </subtraction>
+
+	 <subtraction name="shielding_solid_0" >
+		 <first ref="lead_outer"/> <second ref="copper_inner"/>
+		 <positionref ref="zero_pos"/>
+	 </subtraction>
+
+	 <subtraction name="shielding_solid_1" >
+		 <first ref="shielding_solid_0"/> <second ref="NSupply_empty"/>
+		 <positionref ref="N_pos"/>
+	 </subtraction>
+
+	<tube name="empty_lid" rmin="0." rmax="pb_rad" z="cu_thi + pb_thi" startphi="0" deltaphi="TWOPI" aunit="rad" lunit="mm"/>
+
+	<subtraction name="shielding_solid" >
+		<first ref="shielding_solid_1"/> <second ref="empty_lid"/>
+		<positionref ref="lid_pos"/>
+	</subtraction>
+
+
+ </solids>
+
+
+ <structure>
+	 <volume name="Copper">
+		 <materialref ref="natural_copper"/>
+		 <solidref ref="copper_solid"/>
+	 </volume>
+	 <volume name="Lead">
+		 <materialref ref="natural_lead"/>
+		 <solidref ref="lead_solid"/>
+	 </volume>
+	 <volume name="Shielding">
+	         <materialref ref="G4_AIR"/>
+		 <solidref ref="shielding_solid"/>
+		 <physvol>
+			 <volumeref ref="Lead"/>
+			 <positionref ref="zero_pos"/>
+		 </physvol>
+		 <physvol>
+			 <volumeref ref="Copper"/>
+			 <positionref ref="zero_pos"/>
+		 </physvol>
+	 </volume>
+
+
+ </structure>
+
+
+ <setup name="Default" version="1.0">
+	 <world ref="Shielding"/>
+ </setup>
+
+</gdml>
+
