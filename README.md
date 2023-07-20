@@ -12,10 +12,10 @@ My own efficiency curve outputs are in the output/ folder.
 
 ## Geometry
   The simulation uses the .gdml language to set up the detector geometry as required by g4simple. The geometry files are:
-    - detector_crystal.gdml: This is the Germanium crystal
-    - cryostat.gdml: This is the Aluminium cryostat surrounding the crystal. It includes a solid 22mm thick base.
-    - point_source.gdml: This is the source file, which creates a sphere of 0.5 mm radius to contain the source.
-    - shielding_new.gdml: This is the lead and copper shielding around the detector.
-    - nitrogen_supply.gdml: This is the thermal connection into the liquid nitrogen tank under the detector.
-    - main_sim.gdml: This is the main geometry file which puts the pieces together. Coordinates of each part are specified at the beginning of this document.
+    * detector_crystal.gdml: This is the Germanium crystal
+    * cryostat.gdml: This is the Aluminium cryostat surrounding the crystal. It includes a solid 22mm thick base.
+    * point_source.gdml: This is the source file, which creates a sphere of 0.5 mm radius to contain the source.
+    * shielding_new.gdml: This is the lead and copper shielding around the detector.
+    * nitrogen_supply.gdml: This is the thermal connection into the liquid nitrogen tank under the detector.
+    * main_sim.gdml: This is the main geometry file which puts the pieces together. Coordinates of each part are specified at the beginning of this document.
   The macro file for simulations of sources is sim_point_source.mac. The macro for visualisations is vis_2.mac. It generates a HepRApp output to visualise the geometry.
