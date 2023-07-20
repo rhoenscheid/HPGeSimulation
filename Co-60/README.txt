@@ -56,7 +56,7 @@ B) Split up the job with qsub.sh, qsub1.sh and qsub2.sh
 
 ####COMPARE TO A REAL MEASUREMENT OF SOURCE NO. 43####
 
-It is possible to prepare the simulation outputs in ways to allow for a direct spectrum comparison with a measured spectrum in Interspec.
+It is possible to prepare the simulation outputs in ways that allow for a direct spectrum comparison with a measured spectrum in Interspec.
 
   1. Complete the simulation using one of the methods laid out above.
   2. Go into the summary/ folder inside the simulation folder.
