@@ -44,7 +44,7 @@ After one simulation, expect to find the following files in output/:
   e. The file "sim_out.root" takes a lot of diskspace and can be removed once the main.py script has finished.
   f. Repeat this procedure in every energy simulation folder.
   g. Once all done, run "bash to_merge.sh". This will merge everything into one energies.csv file for the final analysis.
-  h. Go into final_analysis/ and run hist_efficiency.py. This will finally generate the outputs listed under step 2. above.
+  h. Go into final_analysis/ and run hist_efficiency.py. This will finally generate the outputs listed under step 3 above.
 
 5. Recommended if using tmux:
   
