@@ -1,6 +1,9 @@
 # HPGeSimulation
 This is a summary of my work as a MAPS summer intern with the HEP group at UCL. Over six weeks, I created a simulation of our HPGe detector, which can be used to generate efficiency curves for a given location in space. Additionally, it can be employed to simulate the spectra of radioactive point sources in the detector.
-My own efficiency curve outputs are in the output/ folder.
+
+My own efficiency curve outputs are in the efficiency_output/ folder.
+
+The measurements taken with the real HPGe detector are in the measurements/ folder.
 
 ## Efficiency Simulations
   Download the efficiency folder and unpack the .zip file to obtain the "template" folder in your working directory. Create an empty "output" folder in the same directory. There is a new_sim.sh file, which will run everything automatically. However, also in the .zip file are instruction on how to manually run the simulation. 
